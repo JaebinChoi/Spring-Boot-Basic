@@ -1,0 +1,6 @@
+server:
+  port: 8399
+
+logging:
+  level:
+    org.springframework: DEBUG
