@@ -1,9 +1,13 @@
 package com.practice.restful.user;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class UserDaoService {
     public static List<User> users = new ArrayList<>();
     private static int usersCount = 3;
@@ -29,5 +33,28 @@ public class UserDaoService {
 
         users.add(user);
         return user;
+    }
+
+    public User deleteUserById(int id) {
+        Iterator<User> iterator = users.iterator();
+
+        while(iterator.hasNext()) {
+            User user = iterator.next();
+            if(user.getId() == id) {
+                iterator.remove();
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User updateUser(User updateUser) {
+        for(User user : users) {
+            if(user.getId() == updateUser.getId()) {
+                user.setName(updateUser.getName());
+                return user;
+            }
+        }
+        return null;
     }
 }

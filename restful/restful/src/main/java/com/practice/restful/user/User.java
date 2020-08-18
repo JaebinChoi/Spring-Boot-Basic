@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class User {
-    private int id;
+    private Integer id;
     private String name;
     private Date joinDate;
 }
