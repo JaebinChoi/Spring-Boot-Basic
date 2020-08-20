@@ -8,3 +8,14 @@ server:
 spring:
   messages:
     basename: messages
+  security:
+    user:
+      name: jaebin
+      password: jbchoi
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

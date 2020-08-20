@@ -1,5 +1,7 @@
 package com.practice.restful.user;
 
+// import org.springframework.hateoas.EntityModel;
+// import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -7,6 +9,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+// import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+// import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -22,12 +27,19 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveAllUser(@PathVariable int id) {
+    public User retrieveUser(@PathVariable int id) { // EntityModel<User
         User user = service.findOne(id);
 
         if(user == null) {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
+
+        /*// HATEOAS
+        EntityModel<User> model = new EntityModel<>(user);
+        // 추가할 link, mehtodOn : 어떤 메소드를 연결할 것인지, this.getClass() : 현재 클레스의 데이터중 ~~메소드
+        WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        model.add(linkTo.withRel("all-users")); // all-users URI와 연결*/
+
         return user;
     }
 
