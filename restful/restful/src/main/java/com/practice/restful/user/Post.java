@@ -19,7 +19,7 @@ public class Post {
     private String description;
 
     // User : Post -> 1 : (0~N), Main : Sub -> Parent : Child
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) // Data를 바로 가져오지 않음
     @JsonIgnore
     private User user;
 
